@@ -1,7 +1,11 @@
 const asyncHandler = require("express-async-handler");
 
+const Test = require("../models/tesModel");
+
 const getTest = asyncHandler(async (req, res) => {
-  res.json({ message: "Test" });
+  const Tes = await Test.find();
+
+  res.json(Tes);
 });
 
 const setTest = asyncHandler(async (req, res) => {

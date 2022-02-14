@@ -7,8 +7,9 @@ const {
   deleteProduct,
 } = require("../controllers/productsController");
 
-// Chaining the same route
-router.route("/").get(getProducts).post(setProduct);
-router.route("/:id").delete(deleteProduct).put(updateProduct);
+const { protect } = require("../middleware/authMiddleware");
+
+router.route("/").get(protect, getProducts).post(protect, setProduct);
+router.route("/:id").delete(protect, deleteProduct).put(protect, updateProduct);
 
 module.exports = router;
